@@ -1,0 +1,26 @@
+---
+- hosts: remote
+  become: yes
+  tasks:
+    - name: install java
+      yum:
+        name: java-1.6.0-openjdk-devel
+        state: present
+    - name: install tomcat
+      yum:
+        name={{ package_name }}
+        state=present
+    - name: service tomcat start
+      service:
+        name: tomcat
+        state: started
+#    - name: install mysql
+#      yum:
+#       name: mysql-community-server 
+#        state: present
+    - name: deploy openmrs
+      get_url:
+        url: https://nchc.dl.sourceforge.net/project/openmrs/releases/OpenMRS_Platform_2.0.5/openmrs.war
+        dest: /usr/share/tomcat/webapps/openmrs.war
+#  vars:
+#    package_name: tomcat

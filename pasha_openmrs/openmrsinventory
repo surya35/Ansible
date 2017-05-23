@@ -1,0 +1,10 @@
+[local]
+
+localhost
+
+[remote]
+ip-172-31-1-149.sa-east-1.compute.internal
+
+
+[remote:vars]
+package_name=tomcat
